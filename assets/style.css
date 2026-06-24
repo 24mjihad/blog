@@ -356,6 +356,14 @@ a:hover { text-decoration: underline; }
   margin: 40px 0;
 }
 
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 28px 0;
+  border-radius: 6px;
+}
+
 /* ================================================
    RESPONSIVE
    ================================================ */

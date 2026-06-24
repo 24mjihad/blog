@@ -60,6 +60,7 @@ function createGitSync(rootDir) {
       'index.html',
       'post.html',
       'assets/load-posts.js',
+      'assets/images',
     ]);
 
     if (!(await hasStagedChanges())) {
