@@ -88,8 +88,26 @@ Your site updates automatically in ~30 seconds.
 │   ├── blog.js       ← Shared helpers (no need to edit)
 │   └── cv.pdf        ← Add your CV here (optional)
 ├── .nojekyll         ← Tells GitHub Pages not to use Jekyll
+├── edit-blog.js      ← Run the local post editor (see below)
+├── editor/           ← Editor app (used by edit-blog.js)
 └── README.md         ← This file
 ```
+
+## Visual post editor
+
+Instead of hand-editing `blog-data.js`, run the local editor:
+
+```bash
+node edit-blog.js
+```
+
+This opens a browser UI where you can:
+
+- Create and edit posts with a markdown editor (line numbers, toolbar)
+- See a **live preview** styled like your published blog
+- Save changes directly back to `blog-data.js` (Ctrl+S)
+
+Requires [Node.js](https://nodejs.org/) — no npm install needed.
 
 ## Writing tips
 

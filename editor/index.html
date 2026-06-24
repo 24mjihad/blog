@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Editor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/neat.min.css" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/editor.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Blog Editor</h1>
+      <span class="status" id="status">Loading…</span>
+    </div>
+    <div class="topbar-actions">
+      <button type="button" class="btn btn-ghost" id="btn-new">New post</button>
+      <button type="button" class="btn btn-ghost btn-danger" id="btn-delete" disabled>Delete</button>
+      <button type="button" class="btn btn-primary" id="btn-save" disabled>Save to blog-data.js</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+
+    <aside class="sidebar">
+      <p class="sidebar-label">Posts</p>
+      <ul class="post-nav" id="post-nav"></ul>
+    </aside>
+
+    <section class="editor-pane">
+      <div class="meta-fields">
+        <label class="field">
+          <span>Title</span>
+          <input type="text" id="field-title" placeholder="Post title" autocomplete="off" />
+        </label>
+        <label class="field field-sm">
+          <span>Date</span>
+          <input type="date" id="field-date" />
+        </label>
+        <label class="field field-sm">
+          <span>URL id</span>
+          <input type="text" id="field-id" placeholder="my-post-slug" autocomplete="off" spellcheck="false" />
+        </label>
+      </div>
+
+      <div class="toolbar" id="toolbar">
+        <button type="button" data-wrap="## " title="Heading 2">H2</button>
+        <button type="button" data-wrap="### " title="Heading 3">H3</button>
+        <button type="button" data-wrap="**" data-end="**" title="Bold"><strong>B</strong></button>
+        <button type="button" data-wrap="*" data-end="*" title="Italic"><em>I</em></button>
+        <button type="button" data-wrap="`" data-end="`" title="Inline code">Code</button>
+        <button type="button" data-wrap="[" data-end="](url)" title="Link">Link</button>
+        <button type="button" data-line="- " title="Bullet list">List</button>
+        <button type="button" data-line="> " title="Blockquote">Quote</button>
+      </div>
+
+      <div class="codemirror-wrap">
+        <textarea id="field-content" placeholder="Write markdown here…"></textarea>
+      </div>
+    </section>
+
+    <section class="preview-pane">
+      <p class="preview-label">Live preview</p>
+      <article class="preview-article">
+        <p class="post-meta" id="preview-date"></p>
+        <h1 class="post-title" id="preview-title">Untitled</h1>
+        <div class="post-content" id="preview-content"></div>
+      </article>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <script src="/editor-client.js"></script>
+</body>
+</html>
