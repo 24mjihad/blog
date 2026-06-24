@@ -11,22 +11,11 @@
 const POSTS = [
 
   {
-    id: "test",
-    date: "2026-06-24",
-    title: "test",
-    content: `
-## Introduction
-
-Start writing here.test
-    `
-  },
-
-  {
     id: "notes-on-industry-job-search",
     date: "2026-06-20",
     title: "Notes on the Industry Job Search",
     content: `
-## Overview
+## Overview1
 
 After finishing my PhD, I spent several months searching for industry roles. This post collects the things I wish I had known going in — about interview types, preparation, and negotiation.
 
