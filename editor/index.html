@@ -53,6 +53,7 @@
         <button type="button" data-wrap="*" data-end="*" title="Italic"><em>I</em></button>
         <button type="button" data-wrap="`" data-end="`" title="Inline code">Code</button>
         <button type="button" data-wrap="[" data-end="](url)" title="Link">Link</button>
+        <button type="button" id="btn-img" title="Insert image">Img</button>
         <button type="button" data-line="- " title="Bullet list">List</button>
         <button type="button" data-line="> " title="Blockquote">Quote</button>
       </div>
@@ -71,6 +72,32 @@
       </article>
     </section>
 
+  </div>
+
+  <div class="img-modal" id="img-modal" hidden>
+    <div class="img-modal-backdrop" id="img-modal-backdrop"></div>
+    <div class="img-modal-dialog" role="dialog" aria-labelledby="img-modal-title">
+      <h2 class="img-modal-title" id="img-modal-title">Insert image</h2>
+      <p class="img-modal-hint">Images are resized to fit your text column (680px wide) and inserted with a fixed width.</p>
+
+      <label class="img-field">
+        <span>Alt text</span>
+        <input type="text" id="img-alt" placeholder="Describe the image" autocomplete="off" />
+      </label>
+
+      <label class="img-upload-btn">
+        <span>Upload new image</span>
+        <input type="file" id="img-upload" accept="image/jpeg,image/png,image/gif,image/webp" hidden />
+      </label>
+
+      <p class="img-section-label">Or choose an existing image</p>
+      <div class="img-grid" id="img-grid"></div>
+
+      <div class="img-modal-actions">
+        <button type="button" class="btn" id="img-cancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="img-insert" disabled>Insert</button>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>

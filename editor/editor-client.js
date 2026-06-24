@@ -14,6 +14,19 @@
   const previewTitle = $('preview-title');
   const previewContent = $('preview-content');
   const toolbar = $('toolbar');
+  const btnImg = $('btn-img');
+  const imgModal = $('img-modal');
+  const imgModalBackdrop = $('img-modal-backdrop');
+  const imgAlt = $('img-alt');
+  const imgUpload = $('img-upload');
+  const imgGrid = $('img-grid');
+  const imgInsert = $('img-insert');
+  const imgCancel = $('img-cancel');
+
+  const IMAGE_MAX_WIDTH = 680;
+
+  let selectedImage = null;
+  let selectedImageWidth = IMAGE_MAX_WIDTH;
 
   let posts = [];
   let activeId = null;
@@ -291,9 +304,174 @@
     schedulePreview();
   }
 
+  function escapeAttr(text) {
+    return text.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  }
+
+  function buildImageMarkup(imagePath, alt, width) {
+    const safeAlt = escapeAttr(alt || 'Image');
+    return `\n<img src="${imagePath}" alt="${safeAlt}" width="${width}" />\n`;
+  }
+
+  function insertAtCursor(text) {
+    const doc = cm.getDoc();
+    doc.replaceSelection(text);
+    cm.focus();
+    markDirty();
+    schedulePreview();
+  }
+
+  function loadImageDimensions(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+      img.onerror = () => reject(new Error('Could not load image'));
+      img.src = url;
+    });
+  }
+
+  async function resizeImageFile(file) {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, IMAGE_MAX_WIDTH / bitmap.width);
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext('2d').drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+
+    const mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, mime, 0.88));
+    if (!blob) throw new Error('Could not resize image');
+
+    const ext = mime === 'image/png' ? '.png' : '.jpg';
+    const baseName = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9-_]+/g, '-').toLowerCase() || 'image';
+    const filename = `${baseName}${ext}`;
+
+    return { blob, filename, width, height };
+  }
+
+  async function uploadImage(blob, filename) {
+    const dataBase64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result;
+        resolve(String(result).split(',')[1]);
+      };
+      reader.onerror = () => reject(new Error('Could not read image'));
+      reader.readAsDataURL(blob);
+    });
+
+    const res = await fetch('/api/images', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, dataBase64 }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Upload failed');
+    return data;
+  }
+
+  function setSelectedImage(imagePath, displayWidth) {
+    selectedImage = imagePath;
+    selectedImageWidth = Math.min(displayWidth || IMAGE_MAX_WIDTH, IMAGE_MAX_WIDTH);
+    imgInsert.disabled = false;
+    imgGrid.querySelectorAll('.img-option').forEach(el => {
+      el.classList.toggle('selected', el.dataset.path === imagePath);
+    });
+  }
+
+  async function renderImageGrid(images) {
+    imgGrid.innerHTML = '';
+
+    if (images.length === 0) {
+      imgGrid.innerHTML = '<p class="img-grid-empty">No images yet — upload one above.</p>';
+      return;
+    }
+
+    for (const name of images) {
+      const imagePath = `assets/images/${name}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'img-option';
+      btn.dataset.path = imagePath;
+      btn.innerHTML = `
+        <img src="/${imagePath}?t=${Date.now()}" alt="" />
+        <span>${escapeHtml(name)}</span>
+      `;
+      btn.addEventListener('click', async () => {
+        try {
+          const dims = await loadImageDimensions(`/${imagePath}?t=${Date.now()}`);
+          const width = Math.min(dims.width, IMAGE_MAX_WIDTH);
+          setSelectedImage(imagePath, width);
+        } catch {
+          setSelectedImage(imagePath, IMAGE_MAX_WIDTH);
+        }
+      });
+      imgGrid.appendChild(btn);
+    }
+  }
+
+  async function refreshImageGrid(selectPath) {
+    const res = await fetch('/api/images');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not list images');
+    await renderImageGrid(data.images);
+    if (selectPath) {
+      const match = imgGrid.querySelector(`[data-path="${selectPath}"]`);
+      if (match) match.click();
+    }
+  }
+
+  function openImageModal() {
+    selectedImage = null;
+    selectedImageWidth = IMAGE_MAX_WIDTH;
+    imgAlt.value = '';
+    imgUpload.value = '';
+    imgInsert.disabled = true;
+    imgModal.hidden = false;
+    refreshImageGrid().catch(err => {
+      imgGrid.innerHTML = `<p class="img-grid-empty">${escapeHtml(err.message)}</p>`;
+    });
+    imgAlt.focus();
+  }
+
+  function closeImageModal() {
+    imgModal.hidden = true;
+    selectedImage = null;
+    imgInsert.disabled = true;
+    cm.focus();
+  }
+
+  async function handleImageUpload(file) {
+    if (!file) return;
+    setStatus('Resizing and uploading image…');
+    try {
+      const resized = await resizeImageFile(file);
+      const saved = await uploadImage(resized.blob, resized.filename);
+      await refreshImageGrid(saved.path);
+      setSelectedImage(saved.path, resized.width);
+      if (!imgAlt.value.trim()) {
+        imgAlt.value = file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+      }
+      setStatus('Image uploaded — click Insert', 'saved');
+      markDirty();
+    } catch (err) {
+      setStatus(err.message, 'error');
+    }
+  }
+
+  function insertSelectedImage() {
+    if (!selectedImage) return;
+    const markup = buildImageMarkup(selectedImage, imgAlt.value.trim(), selectedImageWidth);
+    insertAtCursor(markup);
+    closeImageModal();
+  }
+
   toolbar.addEventListener('click', e => {
     const btn = e.target.closest('button');
-    if (!btn) return;
+    if (!btn || btn.id === 'btn-img') return;
 
     if (btn.dataset.wrap) {
       wrapSelection(btn.dataset.wrap, btn.dataset.end || '');
@@ -301,6 +479,12 @@
       insertLinePrefix(btn.dataset.line);
     }
   });
+
+  btnImg.addEventListener('click', openImageModal);
+  imgCancel.addEventListener('click', closeImageModal);
+  imgModalBackdrop.addEventListener('click', closeImageModal);
+  imgInsert.addEventListener('click', insertSelectedImage);
+  imgUpload.addEventListener('change', e => handleImageUpload(e.target.files[0]));
 
   fieldTitle.addEventListener('input', () => {
     if (!idManuallyEdited && activeId) {

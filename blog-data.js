@@ -21,7 +21,7 @@ This summer, I have embraced the joys in my life, from friends to food. I am spe
 
 After all, what is the point of being rich if you cannot enjoy it?
 
-![Sailing on the water](assets/images/sailing.jpeg)
+<img src="assets/images/sailing.jpeg" alt="Sailing on the water" width="680" />
 
 I have had the opportunity to chat with some very successful people in the last few weeks leading into summer. There was one question I always made sure to ask before parting ways:
 > "What is one thing you wish you could have right now, that you cannot get?"
