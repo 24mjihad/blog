@@ -15,6 +15,7 @@
   --border:    #e5e5e5;
   --max-w:     680px;
   --toc-w:     200px;
+  --content-measure: 68ch;
   --font-serif: 'Source Serif 4', Georgia, serif;
   --font-sans:  'Inter', system-ui, sans-serif;
 }
@@ -292,7 +293,7 @@ a:hover { text-decoration: underline; }
 .post-content p {
   margin-bottom: 20px;
   font-size: 1rem;
-  max-width: 68ch;
+  max-width: var(--content-measure);
 }
 
 .post-content ul,
@@ -358,8 +359,11 @@ a:hover { text-decoration: underline; }
 
 .post-content img {
   display: block;
-  max-width: 100%;
+  width: auto;
+  max-width: var(--content-measure);
+  max-height: var(--content-measure);
   height: auto;
+  object-fit: contain;
   margin: 28px 0;
   border-radius: 6px;
 }
