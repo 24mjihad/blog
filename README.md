@@ -111,9 +111,11 @@ This opens a browser UI where you can:
 - Create and edit posts with a markdown editor (line numbers, toolbar)
 - See a **live preview** styled like your published blog
 - Save changes directly back to `blog-data.js` (Ctrl+S)
-- **Auto-commit and push** `blog-data.js` to GitHub on save
+- **Auto-commit and push** `blog-data.js`, `blog-data.json`, and `posts-version.txt` to GitHub on save
 
 Requires [Node.js](https://nodejs.org/) — no npm install needed. Git must be installed with a configured `origin` remote. If push fails, the file is still saved locally and the error shows in the status bar.
+
+After deploying site changes (like `index.html`), push once manually. Future post edits only need Save & push from the editor.
 
 To disable auto-push: `set BLOG_EDITOR_GIT_PUSH=0` (Windows) or `BLOG_EDITOR_GIT_PUSH=0 node edit-blog.js` (Mac/Linux).
 
