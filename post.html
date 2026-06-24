@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post — Your Name</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- marked.js for rendering markdown -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+</head>
+<body>
+
+  <div class="post-layout">
+
+    <!-- STICKY SIDEBAR (table of contents) -->
+    <aside class="toc-sidebar">
+      <p class="toc-label">CONTENTS</p>
+      <nav id="toc"></nav>
+    </aside>
+
+    <!-- MAIN POST CONTENT -->
+    <article class="post-body">
+      <a href="index.html" class="back-link">← Back</a>
+      <header class="post-header">
+        <p class="post-meta" id="post-meta"></p>
+        <h1 class="post-title" id="post-title"></h1>
+      </header>
+      <div class="post-content" id="post-content"></div>
+    </article>
+
+  </div>
+
+  <script src="blog-data.js"></script>
+  <script src="assets/blog.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const post = id ? findPost(id) : null;
+    const layout = document.querySelector('.post-layout');
+    const sidebar = document.querySelector('.toc-sidebar');
+
+    if (!post) {
+      document.title = 'Post not found — Your Name';
+      document.getElementById('post-title').textContent = 'Post not found';
+      document.getElementById('post-content').innerHTML =
+        '<p class="post-not-found">This post does not exist. <a href="index.html">Return home</a>.</p>';
+      sidebar.style.display = 'none';
+      layout.classList.add('no-toc');
+    } else {
+      document.title = post.title + ' — Your Name';
+      document.getElementById('post-meta').textContent = formatDate(post.date);
+      document.getElementById('post-title').textContent = post.title;
+
+      const contentEl = document.getElementById('post-content');
+      contentEl.innerHTML = marked.parse(post.content.trim());
+
+      const toc = document.getElementById('toc');
+      const headings = buildTableOfContents(contentEl, toc);
+
+      if (headings.length === 0) {
+        sidebar.style.display = 'none';
+        layout.classList.add('no-toc');
+      } else {
+        highlightTocOnScroll(toc, headings);
+      }
+    }
+  </script>
+</body>
+</html>
