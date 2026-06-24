@@ -11,6 +11,17 @@
 const POSTS = [
 
   {
+    id: "new-post",
+    date: "2026-06-24",
+    title: "Untitled post",
+    content: `
+## Introduction
+
+Start writing here.
+    `
+  },
+
+  {
     id: "notes-on-industry-job-search",
     date: "2026-06-20",
     title: "Notes on the Industry Job Search",

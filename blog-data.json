@@ -1,5 +1,11 @@
 [
   {
+    "id": "new-post",
+    "date": "2026-06-24",
+    "title": "Untitled post",
+    "content": "## Introduction\n\nStart writing here.\n"
+  },
+  {
     "id": "notes-on-industry-job-search",
     "date": "2026-06-20",
     "title": "Notes on the Industry Job Search",
