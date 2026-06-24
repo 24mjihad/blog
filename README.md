@@ -83,9 +83,12 @@ Your site updates automatically in ~30 seconds.
 ├── index.html        ← Home page (bio + blog list)
 ├── post.html         ← Individual post page (shared template)
 ├── blog-data.js      ← ✏️  THE ONLY FILE YOU EDIT TO ADD POSTS
+├── blog-data.json    ← Auto-generated on save (used by the live site)
+├── posts-version.txt ← Cache-buster, auto-updated on save
 ├── assets/
 │   ├── style.css     ← Styles (edit to change fonts/colors)
 │   ├── blog.js       ← Shared helpers (no need to edit)
+│   ├── load-posts.js ← Fetches fresh post data (no need to edit)
 │   └── cv.pdf        ← Add your CV here (optional)
 ├── .nojekyll         ← Tells GitHub Pages not to use Jekyll
 ├── edit-blog.js      ← Run the local post editor (see below)

@@ -42,28 +42,37 @@
 
   </main>
 
-  <script src="blog-data.js"></script>
+  <script src="assets/load-posts.js"></script>
   <script src="assets/blog.js"></script>
   <script>
     const list = document.getElementById('post-list');
-    const sorted = sortPosts(POSTS);
 
-    if (sorted.length === 0) {
-      const li = document.createElement('li');
-      li.className = 'post-empty';
-      li.textContent = 'No posts yet.';
-      list.appendChild(li);
-    } else {
-      sorted.forEach(post => {
+    function renderPosts() {
+      const sorted = sortPosts(POSTS);
+
+      if (sorted.length === 0) {
         const li = document.createElement('li');
-        li.className = 'post-item';
-        li.innerHTML = `
-          <span class="post-date">${formatDate(post.date)}</span>
-          <a class="post-title" href="post.html?id=${encodeURIComponent(post.id)}">${post.title}</a>
-        `;
+        li.className = 'post-empty';
+        li.textContent = 'No posts yet.';
         list.appendChild(li);
-      });
+      } else {
+        sorted.forEach(post => {
+          const li = document.createElement('li');
+          li.className = 'post-item';
+          li.innerHTML = `
+            <span class="post-date">${formatDate(post.date)}</span>
+            <a class="post-title" href="post.html?id=${encodeURIComponent(post.id)}">${post.title}</a>
+          `;
+          list.appendChild(li);
+        });
+      }
     }
+
+    fetchBlogPosts()
+      .then(renderPosts)
+      .catch(err => {
+        list.innerHTML = `<li class="post-empty">Could not load posts: ${err.message}</li>`;
+      });
   </script>
 </body>
 </html>

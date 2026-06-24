@@ -30,23 +30,15 @@
 
   </div>
 
-  <script src="blog-data.js"></script>
+  <script src="assets/load-posts.js"></script>
   <script src="assets/blog.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    const post = id ? findPost(id) : null;
     const layout = document.querySelector('.post-layout');
     const sidebar = document.querySelector('.toc-sidebar');
 
-    if (!post) {
-      document.title = 'Post not found — Your Name';
-      document.getElementById('post-title').textContent = 'Post not found';
-      document.getElementById('post-content').innerHTML =
-        '<p class="post-not-found">This post does not exist. <a href="index.html">Return home</a>.</p>';
-      sidebar.style.display = 'none';
-      layout.classList.add('no-toc');
-    } else {
+    function renderPost(post) {
       document.title = post.title + ' — Your Name';
       document.getElementById('post-meta').textContent = formatDate(post.date);
       document.getElementById('post-title').textContent = post.title;
@@ -64,6 +56,29 @@
         highlightTocOnScroll(toc, headings);
       }
     }
+
+    function showNotFound() {
+      document.title = 'Post not found — Your Name';
+      document.getElementById('post-title').textContent = 'Post not found';
+      document.getElementById('post-content').innerHTML =
+        '<p class="post-not-found">This post does not exist. <a href="index.html">Return home</a>.</p>';
+      sidebar.style.display = 'none';
+      layout.classList.add('no-toc');
+    }
+
+    fetchBlogPosts()
+      .then(() => {
+        const post = id ? findPost(id) : null;
+        if (!post) showNotFound();
+        else renderPost(post);
+      })
+      .catch(err => {
+        document.getElementById('post-title').textContent = 'Could not load post';
+        document.getElementById('post-content').innerHTML =
+          `<p class="post-not-found">${err.message}</p>`;
+        sidebar.style.display = 'none';
+        layout.classList.add('no-toc');
+      });
   </script>
 </body>
 </html>
