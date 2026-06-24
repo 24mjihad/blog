@@ -78,43 +78,6 @@ Good luck — feel free to reach out if you have questions.
   },
 
   {
-    id: "on-tokenization",
-    date: "2025-11-03",
-    title: "A Practical Guide to Tokenization",
-    content: `
-## Why tokenization matters
-
-Tokenization is the first step in any language model pipeline, yet it's often treated as a solved problem. In practice, tokenization decisions have downstream effects on model quality, inference cost, and generalization.
-
-## BPE and its variants
-
-Byte-pair encoding (BPE) is the most widely used algorithm today. It starts from characters (or bytes) and iteratively merges the most frequent pair of adjacent tokens.
-
-### Byte-level BPE
-
-GPT-2 introduced byte-level BPE, which operates on raw bytes rather than characters. This guarantees that any string can be encoded, eliminating out-of-vocabulary issues.
-
-### Unigram language model
-
-An alternative to BPE is the unigram language model, used in SentencePiece. Rather than merging greedily, it starts from a large vocabulary and prunes tokens whose removal hurts a likelihood objective the least.
-
-## Common failure modes
-
-Tokenization causes subtle bugs that are hard to catch:
-
-- **Number splitting:** "1024" might become ["10", "24"], making arithmetic harder
-- **Inconsistent whitespace:** Leading spaces often produce different tokens than the same word mid-sentence
-- **Code:** Many tokenizers are trained primarily on natural language and perform poorly on code
-
-## What I'd do differently
-
-If you're training a model from scratch, invest time in your tokenizer. A vocabulary size of 32k–64k is a reasonable default for English, but multilingual models often benefit from larger vocabularies.
-
-Run ablations on tokenizer choice early — it's much harder to change later.
-    `
-  },
-
-  {
     id: "hello-world",
     date: "2025-08-15",
     title: "Hello, World",
