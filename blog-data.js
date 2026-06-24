@@ -31,29 +31,6 @@ That is when it hit me: somewhere along the way from studying for the SAT to pse
 
 I am doing everything I can to ensure that everyday this summer is filled with joy. I never turn down an opportunity to spend time with people I like.
     `
-  },
-
-  {
-    id: "hello-world",
-    date: "2025-08-15",
-    title: "Hello, World",
-    content: `
-## Starting this blog
-
-I've been meaning to start writing for a long time. This is my attempt to actually do it.
-
-## What I plan to write about
-
-Mostly things related to my research: language models, tokenization, inference, and the occasional field note from the job market or academia.
-
-Some posts will be long and technical. Others will be short observations. I'll try to write things I would have wanted to read when I was earlier in my career.
-
-## Why now
-
-I'm finishing my PhD, which means I have a lot of thoughts to get out of my head and onto paper. Writing is how I figure out what I actually think.
-
-If something here is useful to you, I'd love to hear about it.
-    `
   }
 
 ];
