@@ -52,7 +52,7 @@ function createGitSync(rootDir) {
       return { ok: false, error: 'Could not detect current git branch' };
     }
 
-    await runGit(['add', 'blog-data.js']);
+    await runGit(['add', 'blog-data.js', 'blog-data.json', 'posts-version.txt']);
 
     if (!(await hasStagedChanges())) {
       return { ok: true, skipped: true, reason: 'No changes to commit' };

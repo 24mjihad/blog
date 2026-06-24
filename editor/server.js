@@ -7,6 +7,8 @@ const { createGitSync } = require('./git');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DATA = path.join(ROOT, 'blog-data.js');
+const BLOG_JSON = path.join(ROOT, 'blog-data.json');
+const POSTS_VERSION = path.join(ROOT, 'posts-version.txt');
 const EDITOR_DIR = __dirname;
 const PORT = Number(process.env.BLOG_EDITOR_PORT) || 3847;
 const GIT_PUSH_ENABLED = process.env.BLOG_EDITOR_GIT_PUSH !== '0';
@@ -20,6 +22,18 @@ const MIME = {
 };
 
 function loadPosts() {
+  if (fs.existsSync(BLOG_JSON)) {
+    const posts = JSON.parse(fs.readFileSync(BLOG_JSON, 'utf8'));
+    if (Array.isArray(posts)) {
+      return posts.map(p => ({
+        id: p.id,
+        date: p.date,
+        title: p.title,
+        content: p.content ?? '',
+      }));
+    }
+  }
+
   const code = fs.readFileSync(BLOG_DATA, 'utf8');
   const posts = new Function(`${code}\nreturn POSTS;`)();
   if (!Array.isArray(posts)) {
@@ -35,6 +49,8 @@ function loadPosts() {
 
 function savePosts(posts) {
   fs.writeFileSync(BLOG_DATA, serializePosts(posts), 'utf8');
+  fs.writeFileSync(BLOG_JSON, JSON.stringify(posts, null, 2) + '\n', 'utf8');
+  fs.writeFileSync(POSTS_VERSION, String(Date.now()) + '\n', 'utf8');
 }
 
 function readBody(req) {
