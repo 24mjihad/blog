@@ -30,6 +30,8 @@ git push -u origin main
 
 Your site will be live at `https://yourusername.github.io` within ~60 seconds.
 
+**Project repo** (e.g. `yourusername/blog`): the site is at `https://yourusername.github.io/blog/` — include the `/blog/` path.
+
 ---
 
 ## Customizing your bio
