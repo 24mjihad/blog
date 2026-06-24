@@ -12,7 +12,7 @@ const POSTS = [
 
   {
     id: "notes-on-joy",
-    date: "2026-06-24",
+    date: "2026-06-23",
     title: "Notes on joy",
     content: `
 ## My summer
