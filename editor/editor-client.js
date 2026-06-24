@@ -215,13 +215,17 @@
     }
 
     btnSave.disabled = true;
-    setStatus('Saving…');
+    setStatus('Saving & pushing…');
 
     try {
+      const title = fieldTitle.value.trim() || 'blog posts';
       const res = await fetch('/api/posts', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ posts }),
+        body: JSON.stringify({
+          posts,
+          commitMessage: `Update blog: ${title}`,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Save failed');
@@ -230,6 +234,18 @@
       activeId = posts.find(p => p.id === fieldId.value.trim())?.id ?? activeId;
       renderPostNav();
       markClean();
+
+      const git = data.git;
+      if (!git) {
+        setStatus('Saved to blog-data.js', 'saved');
+      } else if (git.pushed) {
+        setStatus(`Saved and pushed to GitHub (${git.branch})`, 'saved');
+      } else if (git.skipped) {
+        setStatus(`Saved (${git.reason})`, 'saved');
+      } else if (git.error) {
+        setStatus(`Saved locally — push failed: ${git.error}`, 'error');
+        btnSave.disabled = false;
+      }
     } catch (err) {
       setStatus(err.message, 'error');
       btnSave.disabled = false;
@@ -339,6 +355,8 @@
       e.returnValue = '';
     }
   });
+
+  window.addEventListener('resize', () => cm.refresh());
 
   async function init() {
     try {

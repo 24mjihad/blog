@@ -3,11 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 const { serializePosts } = require('./serialize');
+const { createGitSync } = require('./git');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DATA = path.join(ROOT, 'blog-data.js');
 const EDITOR_DIR = __dirname;
 const PORT = Number(process.env.BLOG_EDITOR_PORT) || 3847;
+const GIT_PUSH_ENABLED = process.env.BLOG_EDITOR_GIT_PUSH !== '0';
+const gitSync = createGitSync(ROOT);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -110,14 +113,25 @@ async function handleRequest(req, res) {
   if (pathname === '/api/posts' && req.method === 'PUT') {
     try {
       const body = await readBody(req);
-      const { posts } = JSON.parse(body);
+      const parsed = JSON.parse(body);
+      const { posts, commitMessage } = parsed;
       const error = validatePosts(posts);
       if (error) {
         sendJson(res, 400, { error });
         return;
       }
       savePosts(posts);
-      sendJson(res, 200, { ok: true, posts });
+
+      let git = null;
+      if (GIT_PUSH_ENABLED) {
+        try {
+          git = await gitSync.pushBlogData({ message: commitMessage });
+        } catch (err) {
+          git = { ok: false, error: err.message };
+        }
+      }
+
+      sendJson(res, 200, { ok: true, posts, git });
     } catch (err) {
       sendJson(res, 500, { error: err.message });
     }
@@ -153,6 +167,11 @@ function start({ open = true } = {}) {
   server.listen(PORT, '127.0.0.1', () => {
     const url = `http://127.0.0.1:${PORT}`;
     console.log(`Blog editor running at ${url}`);
+    if (GIT_PUSH_ENABLED) {
+      console.log('Save will commit blog-data.js and push to origin.');
+    } else {
+      console.log('Git push disabled (BLOG_EDITOR_GIT_PUSH=0).');
+    }
     console.log('Press Ctrl+C to stop.');
     if (open) openBrowser(url);
   });

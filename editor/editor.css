@@ -121,6 +121,8 @@ html, body {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr 1fr;
   height: calc(100vh - var(--topbar-h));
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* ================================================
@@ -192,6 +194,8 @@ html, body {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  min-height: 0;
+  overflow: hidden;
   border-right: 1px solid var(--border);
   background: var(--panel-bg);
 }
@@ -267,21 +271,34 @@ html, body {
 .codemirror-wrap {
   flex: 1;
   min-height: 0;
+  position: relative;
   overflow: hidden;
 }
 
 .codemirror-wrap .CodeMirror {
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  height: auto;
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
   font-size: 0.88rem;
   line-height: 1.6;
+}
+
+.codemirror-wrap .CodeMirror-scroll {
+  overflow: auto !important;
+  margin-bottom: 0;
+  margin-right: 0;
+  padding-bottom: 0;
+  height: 100%;
 }
 
 /* ================================================
    PREVIEW PANE
    ================================================ */
 .preview-pane {
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 24px 28px 48px;
   background: #fff;
 }
@@ -326,7 +343,8 @@ html, body {
   .preview-pane {
     grid-column: 1 / -1;
     border-top: 1px solid var(--border);
-    max-height: 40vh;
+    min-height: 0;
+    max-height: none;
   }
 }
 
