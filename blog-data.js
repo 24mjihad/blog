@@ -12,7 +12,7 @@ const POSTS = [
 
   {
     id: "notes-on-learning-things-late",
-    date: "2026-06-25",
+    date: "2026-06-24",
     title: "Notes on learning things late",
     content: `
 ## I don't know how to swim at the age of 19.
@@ -52,7 +52,12 @@ Which is exactly what he did. So there is a picture of me basically drowing in f
 
 <img src="assets/images/swim.jpg" alt="Harvard Rowers and me in the water after winning Eastern Sprints" width="640" />
 
-##
+## Learning things late
+
+### Friends and Sailing
+Me and two friends (Liz & Andrea) decided to start sailing this summer. Sailing was new to me, but I was learning fast, however because I was always going with someone (Liz) I was never worried about drowning. However now that I am getting better I realized that I would need to go out sailing on my own, and with that comes the high likelihood of me flipping. Even though I was always wearing a life jacket I knew that it could still be an issue so I made a decision to start learning.
+
+### Friends support learning things late
     `
   },
 
