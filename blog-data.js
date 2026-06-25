@@ -17,52 +17,51 @@ const POSTS = [
     content: `
 ## I don't know how to swim at the age of 19.
 
-This may come as a shock to you if you know me, considering all the various water sports I participate in from varsity rowing to sailing. 
+This may come as a shock to you if you know me, considering all the various water sports I participate in, from varsity rowing to sailing. 
 
 ## Why
 
-I think my avoidance of learning to swim came from a early childhood memory; I was swimming with my siblings in the countryside of Bangladesh. My mother was on shore talking to someone, my siblings began to race to an island with their friends leaving me behind. I didn't want to be left behind and so I followed behind them, they were far too gone, and the water was far too deep. I began to drown and was overcome with the feeling of water filling up my lungs and nasal cannels. A poor farmer who was washing his cow on the same body of water that I was drowning in, saw me and jumped in without hesitation; he swam over to me and dragged me back onto land. Ever since then I've avoided swimming.
+I think my avoidance of learning to swim stemmed from an early childhood memory. I was swimming with my siblings in the countryside of Bangladesh. My mother was on the shore talking to someone, and my siblings began to race to an island with their friends, leaving me behind. I didn't want to be left behind, so I followed them. They were far too ahead, and the water was far too deep. I began to drown and was overcome with the feeling of water filling up my lungs and nasal cavities. A poor farmer, who was washing his cow in the same body of water, saw me and jumped in without hesitation; he swam over to me and dragged me back onto land. Ever since then, I've avoided swimming.
 
 ## How water sports?
 
-My jouney with water sports began in high school, when I decided to follow a few friends of mine and join the rowing team. I know that swimming was going to be an issue, but I was hoping somehow it would work out.
+My journey with water sports began in high school, when I decided to follow a few friends of mine and join the rowing team. I knew that swimming was going to be an issue, but I was hoping somehow it would work out.
 
 ### Failed swim test
 
-This is the first every exam I have failed. I showed up to take the swim test to be cleared for rowing. I had no prior experience with swimming besides some youtube videos that I rushed to watch before the test. As I began my exam, I quicky sank to the bottom and the lifeguard administering the test had to drop a floaty for me to grab onto. 
+This is the first ever exam I have failed. I showed up to take the swim test to be cleared for rowing. I had no prior experience with swimming besides some YouTube videos that I rushed to watch before the test. As I began my exam, I quickly sank to the bottom, and the lifeguard administering the test had to drop a floaty for me to grab onto. 
 
 ### Pass
 
-After this happened, I was allowed to row but had to wear a life jacket. Coach Bill asked me to learn to swim so that I didn't have to wear that anymore. I wanted to do as he said so I started showing up to the pool before and after school and just messing around. The person who failed my swim test actually came over and helped me for a lesson and helped me learn to swim on my back. 
+After this happened, I was allowed to row but had to wear a life jacket. Coach Bill asked me to learn to swim so that I didn't have to wear it anymore. I wanted to do as he said, so I started showing up to the pool before and after school and just messing around. The person who failed my swim test actually came over, gave me a lesson, and helped me learn to swim on my back. 
 
-Eventually I know enough (swim on back, thread water) to pass the swim exam and didn't need to wear the life jacket anymore.
+Eventually, I knew enough (swimming on my back, treading water) to pass the swim exam and didn't need to wear the life jacket anymore.
 
-### Harvard Rowing without swim test
+### Harvard Rowing without a swim test
 
-I was unsure if I wanted to row in college, a week into college, I was talking with a friend from highschool that was on the Harvard Rowing team now, and hearing him talk about practice made me realize that I too wanted that in my life. So I emailed the coach and he let me join. My clearance for the sport was a week behind everyone else, so things needed to be expedited, after many emails from myself, and the coaches to the health services I was somehow cleared to row without having ever taken the swim test, a test that all the other coxswains had to do, a test that I most definetly would have failed had I taken it.
+I was unsure if I wanted to row in college. A week into college, I was talking with a friend from high school who was on the Harvard Rowing team, and hearing him talk about practice made me realize that I too wanted that in my life. So, I emailed the coach and he let me join. My clearance for the sport was a week behind everyone else, so things needed to be expedited. After many emails from myself and the coaches to health services, I was somehow cleared to row without ever having taken the swim test—a test that all the other coxswains had to do, and a test that I most definitely would have failed had I taken it.
 
 ## Funny times at Harvard Rowing without swimming
 
 A rowing tradition is to throw the coxswain into the water after winning a major race. This is something that happened to me after I won the national championship with Harvard at the Eastern Sprints last summer in 2025.
 
-I told one of the guys, my stroke man that, 
-> Hey you can throw me in, but you should know that I can't swim, so jump in after me
+I told one of the guys, my stroke man:
+> "Hey, you can throw me in, but you should know that I can't swim, so jump in after me."
 
-Which is exactly what he did. So there is a picture of me basically drowing in front of the medal dock being held up by my stroke seat.
+Which is exactly what he did. So, there is a picture of me basically drowning in front of the medal dock, being held up by my stroke seat.
 
 <img src="assets/images/swim.jpg" alt="Harvard Rowers and me in the water after winning Eastern Sprints" width="640" />
 
 ## Learning things late
 
 ### Friends and Sailing
-Me and two friends (Liz & Andrea) decided to start sailing this summer. Sailing was new to me, but I was learning fast, however because I was always going with someone (Liz) I was never worried about drowning. However now that I am getting better I realized that I would need to go out sailing on my own, and with that comes the high likelihood of me flipping. Even though I was always wearing a life jacket I knew that it could still be an issue so I made a decision to start learning.
+Two friends (Liz & Andrea) and I decided to start sailing this summer. Sailing was new to me, but I was learning fast. However, because I was always going out with someone (Liz), I was never worried about drowning. But now that I am getting better, I realize that I will need to go out sailing on my own, and with that comes a high likelihood of capsizing. Even though I always wear a life jacket, I knew it could still be an issue, so I made a decision to start learning.
 
 ### Friends support learning things late
 
-After having made my decision to learn this skill late in life, I was suprised by how supported I was by friends, many of which offered to come swim with me and teach me and help. And so far as of 6/24/2026 I have gotten a lot better with swimming and am happy with my progress. I now know that even if I fall in, I will likely survive.
+After making the decision to learn this skill late in life, I was surprised by how supportive my friends were. Many of them offered to come swim with me, teach me, and help out. As of 6/24/2026, I have gotten a lot better at swimming and am happy with my progress. I now know that even if I fall in, I will likely survive.
 
-
-> Learn things late, learning is fun, especially if there is a end to it.
+> Learn things late; learning is fun, especially if there is an end to it.
     `
   },
 
