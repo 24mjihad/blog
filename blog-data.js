@@ -11,6 +11,52 @@
 const POSTS = [
 
   {
+    id: "notes-on-learning-things-late",
+    date: "2026-06-25",
+    title: "Notes on learning things late",
+    content: `
+## I don't know how to swim at the age of 19.
+
+This may come as a shock to you if you know me, considering all the various water sports I participate in from varsity rowing to sailing. 
+
+## Why
+
+I think my avoidance of learning to swim came from a early childhood memory; I was swimming with my siblings in the countryside of Bangladesh. My mother was on shore talking to someone, my siblings began to race to an island with their friends leaving me behind. I didn't want to be left behind and so I followed behind them, they were far too gone, and the water was far too deep. I began to drown and was overcome with the feeling of water filling up my lungs and nasal cannels. A poor farmer who was washing his cow on the same body of water that I was drowning in, saw me and jumped in without hesitation; he swam over to me and dragged me back onto land. Ever since then I've avoided swimming.
+
+## How water sports?
+
+My jouney with water sports began in high school, when I decided to follow a few friends of mine and join the rowing team. I know that swimming was going to be an issue, but I was hoping somehow it would work out.
+
+### Failed swim test
+
+This is the first every exam I have failed. I showed up to take the swim test to be cleared for rowing. I had no prior experience with swimming besides some youtube videos that I rushed to watch before the test. As I began my exam, I quicky sank to the bottom and the lifeguard administering the test had to drop a floaty for me to grab onto. 
+
+### Pass
+
+After this happened, I was allowed to row but had to wear a life jacket. Coach Bill asked me to learn to swim so that I didn't have to wear that anymore. I wanted to do as he said so I started showing up to the pool before and after school and just messing around. The person who failed my swim test actually came over and helped me for a lesson and helped me learn to swim on my back. 
+
+Eventually I know enough (swim on back, thread water) to pass the swim exam and didn't need to wear the life jacket anymore.
+
+### Harvard Rowing without swim test
+
+I was unsure if I wanted to row in college, a week into college, I was talking with a friend from highschool that was on the Harvard Rowing team now, and hearing him talk about practice made me realize that I too wanted that in my life. So I emailed the coach and he let me join. My clearance for the sport was a week behind everyone else, so things needed to be expedited, after many emails from myself, and the coaches to the health services I was somehow cleared to row without having ever taken the swim test, a test that all the other coxswains had to do, a test that I most definetly would have failed had I taken it.
+
+## Funny times at Harvard Rowing without swimming
+
+A rowing tradition is to throw the coxswain into the water after winning a major race. This is something that happened to me after I won the national championship with Harvard at the Eastern Sprints last summer in 2025.
+
+I told one of the guys, my stroke man that, 
+> Hey you can throw me in, but you should know that I can't swim, so jump in after me
+
+Which is exactly what he did. So there is a picture of me basically drowing in front of the medal dock being held up by my stroke seat.
+
+<img src="assets/images/swim.jpg" alt="Harvard Rowers and me in the water after winning Eastern Sprints" width="640" />
+
+##
+    `
+  },
+
+  {
     id: "notes-on-joy",
     date: "2026-06-23",
     title: "Notes on joy",
