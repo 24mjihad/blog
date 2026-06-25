@@ -58,6 +58,11 @@ Which is exactly what he did. So there is a picture of me basically drowing in f
 Me and two friends (Liz & Andrea) decided to start sailing this summer. Sailing was new to me, but I was learning fast, however because I was always going with someone (Liz) I was never worried about drowning. However now that I am getting better I realized that I would need to go out sailing on my own, and with that comes the high likelihood of me flipping. Even though I was always wearing a life jacket I knew that it could still be an issue so I made a decision to start learning.
 
 ### Friends support learning things late
+
+After having made my decision to learn this skill late in life, I was suprised by how supported I was by friends, many of which offered to come swim with me and teach me and help. And so far as of 6/24/2026 I have gotten a lot better with swimming and am happy with my progress. I now know that even if I fall in, I will likely survive.
+
+
+> Learn things late, learning is fun, especially if there is a end to it.
     `
   },
 
